@@ -1,31 +1,32 @@
-apply plugin: 'com.android.library'
+//apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 apply plugin: 'org.robolectric'
 
 android {
-  compileSdkVersion 22
-  buildToolsVersion "22.0.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
 
-  defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 22
-    versionCode 1
-    versionName "1.0"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
     }
-  }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.0.0'
 
-
-  testCompile 'junit:junit:4.12'
-
-  testCompile "org.robolectric:robolectric:3.0-SNAPSHOT"
-  testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
+    testCompile('org.robolectric:shadows-support-v4:3.0-SNAPSHOT') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
 }
